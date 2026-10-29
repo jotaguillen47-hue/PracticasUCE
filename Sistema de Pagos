@@ -1,0 +1,41 @@
+
+using System;
+
+class Pago
+{
+    public virtual decimal Calcular(decimal monto)
+    {
+        return monto;
+    }
+}
+
+class Efectivo : Pago
+{
+}
+
+class Tarjeta : Pago
+{
+    public override decimal Calcular(decimal monto)
+    {
+        return monto + (monto * 0.03m);
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        Pago pago1 = new Efectivo();
+        Pago pago2 = new Tarjeta();
+
+        decimal total1 = pago1.Calcular(1000);
+        decimal total2 = pago2.Calcular(1000);
+
+        decimal total = total1 + total2;
+
+        Console.WriteLine("Pago en efectivo: " + total1);
+        Console.WriteLine("Pago con tarjeta: " + total2);
+     
+        Console.WriteLine("Total a pagar: " + total);
+    }
+}
